@@ -1,6 +1,7 @@
 {
     "name": "pqb/filemanager-laravel",
     "description": "Filemanager for Laravel 4",
+    "license": "MIT",
     "authors": [
         {
             "name": "Guillermo M.",
