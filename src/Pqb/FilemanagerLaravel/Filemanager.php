@@ -520,7 +520,7 @@ class Filemanager
 					$image = Image::make($imagePath);
 					$resized = $image->resize($this->config['images']['resize']['maxWidth'], $this->config['images']['resize']['maxHeight'],function ($constraint) {$constraint->aspectRatio();$constraint->upsize();});
 					$resized->save($imagePath);
-					// $this->__log(__METHOD__ . ' - resizing image : '. $_FILES['newfile']['name']. ' into '. $current_path);
+					$this->__log(__METHOD__ . ' - resizing image : '. $_FILES['newfile']['name']. ' into '. $current_path);
 				}
 			}
 		}
