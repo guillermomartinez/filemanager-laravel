@@ -45,3 +45,5 @@ editor_config.selector = "textarea";
 tinymce.init(editor_config);
 </script>
 ```
+##Demo
+http://www.youtube.com/watch?v=yowJRKZ3Ums
