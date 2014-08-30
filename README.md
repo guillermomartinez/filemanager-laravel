@@ -9,7 +9,7 @@ Basado de https://github.com/simogeo/Filemanager
 
 Edita tu `composer.json`.
 
-	"require-dev": {
+	"require": {
 		"pqb/filemanager-laravel": "1.*"
 	}
 
