@@ -18,7 +18,7 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('Pqb/FilemanagerLaravel');
+		// $this->package('Pqb/FilemanagerLaravel');
 	}
 
 	/**

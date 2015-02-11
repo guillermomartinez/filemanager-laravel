@@ -1,5 +1,9 @@
 <?php
-class FilemanagerLaravelController extends BaseController {
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+class FilemanagerLaravelController extends Controller {
 	public function __construct(){
 		// $this->beforeFilter('auth');
 		
