@@ -36,6 +36,11 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
 		  $loader->alias('FilemanagerLaravel', 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel');
 		});
+		$this->publishes([
+            __DIR__ . '/../../controllers' => base_path('app/Http/Controllers'),
+            __DIR__ . '/../../views' => base_path('resources/views/vendor/filemanager-laravel'),            
+        ]);
+        $this->loadViewsFrom(__DIR__ . 'resources/views', 'filemanager-laravel');
 	}
 
 	/**

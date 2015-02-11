@@ -10,14 +10,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.2.*|5.0.*",
+        "illuminate/support": "5.0.*",
         "intervention/image": "2.*"
     },
-    "autoload": {
-        "classmap": [
-            "src/migrations",
-            "src/controllers"
-        ],
+    "autoload": {        
         "psr-0": {
             "Pqb\\FilemanagerLaravel\\": "src/"
         }

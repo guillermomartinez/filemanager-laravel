@@ -1,8 +1,10 @@
-<?php
+<?php namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+
+use Pqb\FilemanagerLaravel\FilemanagerLaravel;
+
 class FilemanagerLaravelController extends Controller {
 	public function __construct(){
 		// $this->beforeFilter('auth');
@@ -10,7 +12,7 @@ class FilemanagerLaravelController extends Controller {
 	}
 	public function getShow()
 	{
-		return View::make('FilemanagerLaravel::filemanager.index');
+		return view('filemanager-laravel::filemanager.index');
 	}
 	public function getConnectors()
 	{

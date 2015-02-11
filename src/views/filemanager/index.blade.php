@@ -17,6 +17,7 @@
 <body>
 <div>
 <form id="uploader" method="post">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button id="home" name="home" type="button" value="Home">&nbsp;</button>
 	<h1></h1>
 	<div id="uploadresponse"></div>
