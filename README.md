@@ -25,7 +25,7 @@ Y en el Facade
 
 	'FilemanagerLaravel'=> 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel',
 
-Copia el Controller, View y la carpeta filemanager y tinymce a tu carpeta public
+Copia el Controller, View a la carpeta resources/views/vendor/filemanager-laravel, la carpeta filemanager y tinymce a tu carpeta public, con el siguiente comando:
 	
 	php artisan vendor:publish
 
