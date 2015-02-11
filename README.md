@@ -25,15 +25,15 @@ Y en el Facade
 
 	'FilemanagerLaravel'=> 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel',
 
-Agrega en routes.php
-
-	Route::group(array('before' => 'auth'), function(){
-		Route::controller('filemanager', 'FilemanagerLaravelController');
-	});
-
-Copia las carpetas filemanager y tinymce a tu carpeta public
+Copia el Controller, View a la carpeta resources/views/vendor/filemanager-laravel, la carpeta filemanager y tinymce a tu carpeta public, con el siguiente comando:
 	
 	php artisan vendor:publish
+
+Al final Agrega en routes.php
+
+	Route::group(array('middleware' => 'auth'), function(){
+		Route::controller('filemanager', 'FilemanagerLaravelController');
+	});
 
 
 Para que carge tinymce con el plugin filemanager agrega:
