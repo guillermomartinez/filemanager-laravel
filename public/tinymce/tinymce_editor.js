@@ -28,7 +28,7 @@ var editor_config = {
                 x = w.innerWidth || e.clientWidth || g.clientWidth,
                 y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-            var cmsURL = '/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+            var cmsURL = 'filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
 
             if(type == 'image') {           
                 cmsURL = cmsURL + "&type=images";
