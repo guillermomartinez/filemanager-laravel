@@ -1,6 +1,9 @@
 #Filemanager para Laravel 5
 Basado de https://github.com/simogeo/Filemanager
 
+##Demo
+http://laravel-filemanager.rhcloud.com/
+
 ##Requiere
 
 "intervention/image": "2.*"
