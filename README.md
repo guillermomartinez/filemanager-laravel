@@ -3,6 +3,7 @@ Basado de https://github.com/simogeo/Filemanager
 
 ##Demo
 http://laravel-filemanager.rhcloud.com/
+http://laravel-filemanager.rhcloud.com/filemanager/show
 
 ##Requiere
 
