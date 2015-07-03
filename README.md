@@ -51,7 +51,9 @@ tinymce.init(editor_config);
 </script>
 ```
 
-##Si deseas poner en una sub carpeta ejemplo http://localhost/admin/filemanager/
+##Si deseas poner en una sub carpeta
+Ejemplo http://localhost/admin/filemanager/
+
 Modifica tu routes.php
 ```
 Route::group(array('middleware' => 'auth'), function(){
@@ -83,7 +85,7 @@ Modifica todos los enlaces agregando el nombre de tu carpeta
 <link rel="stylesheet" type="text/css" href="{{ url('') }}/admin/filemanager/styles/filemanager.css" />
 ```
 
-Cambiar la url absoluta:
+Cambia la url absoluta:
 ```
 <script type="text/javascript">
 editor_config.selector = "textarea";
