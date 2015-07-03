@@ -46,14 +46,50 @@ Para que carge tinymce con el plugin filemanager agrega:
 <script type="text/javascript" src="{{ url('') }}/tinymce/tinymce_editor.js"></script>
 <script type="text/javascript">
 editor_config.selector = "textarea";
+editor_config.path_absolute = "http://laravel-filemanager.rhcloud.com/";
 tinymce.init(editor_config);
 </script>
 ```
 
-Cambiar la url absoluta en:
+##Si deseas poner en una sub carpeta ejemplo http://localhost/admin/filemanager/
+Modifica tu routes.php
 ```
-//tinymce/tinymce_editor.js
-var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+Route::group(array('middleware' => 'auth'), function(){
+    Route::controller('admin/filemanager', 'FilemanagerLaravelController');
+});
+```
+Modifica tu controller
+```
+// app/Http/Controllers/FilemanagerLaravelController.php
+public function getConnectors()
+	{
+		$extraConfig = array('dir_filemanager'=>'/admin');
+		$f = FilemanagerLaravel::Filemanager($extraConfig);
+		$f->connector_url = url('/').'/admin/filemanager/connectors';
+		$f->run();
+	}
+	public function postConnectors()
+	{
+		$extraConfig = array('dir_filemanager'=>'/admin');
+		$f = FilemanagerLaravel::Filemanager($extraConfig);
+		$f->connector_url = url('/').'/admin/filemanager/connectors';
+		$f->run();
+	}
+```
+
+Modifica todos los enlaces agregando el nombre de tu carpeta
+```	
+// resources/views/vendor/filemanager-laravel/filemanager/index.blade.php
+<link rel="stylesheet" type="text/css" href="{{ url('') }}/admin/filemanager/styles/filemanager.css" />
+```
+
+Cambiar la url absoluta:
+```
+<script type="text/javascript">
+editor_config.selector = "textarea";
+editor_config.path_absolute = "http://laravel-filemanager.rhcloud.com/admin/";
+tinymce.init(editor_config);
+</script>
 ```
 
 #Filemanager para Laravel 4

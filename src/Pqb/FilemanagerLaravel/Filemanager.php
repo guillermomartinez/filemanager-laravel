@@ -22,7 +22,10 @@ class Filemanager
 	protected $separator = 'userfiles'; // @todo fix keep it or not?
 	public $connector_url='/filemanager/connectors'; // Url where prosecute all operations
 	public $dir_filemanager=''; // filemanager plugin folder relating to domain example: /tinymce/plugins
-	public function __construct($extraConfig = '') {		
+	public function __construct($extraConfig = '') {	
+		if(!empty($extraConfig) && is_array($extraConfig) && array_key_exists('dir_filemanager', $extraConfig)) {
+			$this->dir_filemanager = $extraConfig['dir_filemanager'];
+		}	
 		// getting default config file
 		$content = file_get_contents(public_path().$this->dir_filemanager."/filemanager/scripts/filemanager.config.js.default");
 		$config_default = json_decode($content, true);
@@ -36,6 +39,8 @@ class Filemanager
 		}
 		// $this->root = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR;
 		$this->root = public_path().DIRECTORY_SEPARATOR;
+		if($this->dir_filemanager!="")
+		$this->root .= $this->dir_filemanager.'/';
 		// var_dump($this->root);
 		$this->properties = array(
 			'Date Created'=>null,
