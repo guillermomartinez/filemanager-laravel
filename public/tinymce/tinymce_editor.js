@@ -27,7 +27,9 @@ var editor_config = {
                 g = d.getElementsByTagName('body')[0],
                 x = w.innerWidth || e.clientWidth || g.clientWidth,
                 y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
+            // Url absolute
+            // var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+            // var cmsURL = 'http://localhost/otherfolder/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
             var cmsURL = 'filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
 
             if(type == 'image') {           

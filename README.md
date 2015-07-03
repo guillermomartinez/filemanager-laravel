@@ -50,6 +50,11 @@ tinymce.init(editor_config);
 </script>
 ```
 
+Cambiar la url absoluta en:
+```
+//tinymce/tinymce_editor.js
+var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+```
 
 #Filemanager para Laravel 4
 Basado de https://github.com/simogeo/Filemanager
@@ -98,5 +103,12 @@ editor_config.selector = "textarea";
 tinymce.init(editor_config);
 </script>
 ```
+
+Cambiar la url absoluta en:
+```
+//tinymce/tinymce_editor.js
+var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+```
+
 ##Demo
 http://www.youtube.com/watch?v=yowJRKZ3Ums
