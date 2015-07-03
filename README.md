@@ -2,8 +2,8 @@
 Basado de https://github.com/simogeo/Filemanager
 
 ##Demo
-http://laravel-filemanager.rhcloud.com/
-http://laravel-filemanager.rhcloud.com/filemanager/show
+<a target="_blank" href="http://laravel-filemanager.rhcloud.com/">http://laravel-filemanager.rhcloud.com/</a><br>
+<a target="_blank" href="http://laravel-filemanager.rhcloud.com/filemanager/show">http://laravel-filemanager.rhcloud.com/filemanager/show</a>
 
 ##Requiere
 
