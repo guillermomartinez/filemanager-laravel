@@ -1,4 +1,5 @@
 var editor_config = {
+    path_absolute : '',
 	language : 'es',
     // selector: "textarea",
     theme: "modern",
@@ -30,7 +31,7 @@ var editor_config = {
             // Url absolute
             // var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
             // var cmsURL = 'http://localhost/otherfolder/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
-            var cmsURL = 'filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
+            var cmsURL = editor_config.path_absolute+'filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
 
             if(type == 'image') {           
                 cmsURL = cmsURL + "&type=images";
