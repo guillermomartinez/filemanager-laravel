@@ -1211,6 +1211,7 @@ var getFileInfo = function(file) {
 		template += '<button id="replace" name="replace" type="button" value="Replace">' + lg.replace + '</button>';
 		template += '<div class="hidden-file-input"><input id="fileR" name="fileR" type="file" /></div>';
 		template += '<input id="mode" name="mode" type="hidden" value="replace" /> ';
+		template += '<input name="_token" type="hidden" value="'+ $("input[name='_token']").val() +'" /> ';
 		template += '<input id="newfilepath" name="newfilepath" type="hidden" />';
 	}
 	template += '</form>';
