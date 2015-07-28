@@ -22,15 +22,19 @@ class Filemanager
 	protected $separator = 'userfiles'; // @todo fix keep it or not?
 	public $connector_url='/filemanager/connectors'; // Url where prosecute all operations
 	public $dir_filemanager=''; // filemanager plugin folder relating to domain example: /tinymce/plugins
+	private $dir_separate_real = '/filemanager';
 	public function __construct($extraConfig = '') {	
 		if(!empty($extraConfig) && is_array($extraConfig) && array_key_exists('dir_filemanager', $extraConfig)) {
 			$this->dir_filemanager = $extraConfig['dir_filemanager'];
-		}	
+		}		
+		if($this->dir_filemanager!=""){
+			$this->dir_separate_real = $this->dir_filemanager.'/filemanager';
+		}
 		// getting default config file
-		$content = file_get_contents(public_path().$this->dir_filemanager."/filemanager/scripts/filemanager.config.js.default");
+		$content = file_get_contents(public_path().$this->dir_separate_real."/scripts/filemanager.config.js.default");
 		$config_default = json_decode($content, true);
 		// getting user config file
-		$content = file_get_contents(public_path().$this->dir_filemanager."/filemanager/scripts/filemanager.config.js");
+		$content = file_get_contents(public_path().$this->dir_separate_real."/scripts/filemanager.config.js");
 		$config = json_decode($content, true);
 		$this->config = array_replace_recursive ($config_default, $config);
 		// override config options if needed
@@ -139,7 +143,7 @@ class Filemanager
 	public function getinfo() {
 		$this->item = array();
 		$this->item['properties'] = $this->properties;
-		$this->get_file_info('', false);
+		$this->get_file_info('', false);		
 		// handle path when set dynamically with $fm->setFileRoot() method
 		if($this->dynamic_fileroot != '') {
 			$path = $this->dynamic_fileroot. $this->get['path'];
@@ -691,7 +695,7 @@ class Filemanager
 		} else {
 			$full_path = $this->doc_root . rawurldecode($path);
 		}
-		$full_path = str_replace("//", "/", $full_path);
+		$full_path = str_replace("//", "/", $full_path);		
 		$this->__log(" returned path : " . $full_path);
 		return $full_path;
 	}
@@ -750,7 +754,17 @@ private function isValidPath($path) {
 	// @todo remove debug message
 	// $this->__log('compare : ' .$this->getFullPath(). '($this->getFullPath())  and ' . $path . '(path)');
 	// $this->__log('strncmp() retruned value : ' .strncmp($path, $this->getFullPath(), strlen($this->getFullPath())));
-	return !strncmp($path, $this->getFullPath(), strlen($this->getFullPath()));
+	$path1 = realpath($path);
+	$path2 = realpath($this->doc_root.$this->dir_separate_real.'/'.$this->separator);	
+	$this->__log(__METHOD__ ." path1 value : " . $path1);
+	$this->__log(__METHOD__ ." path2 value : " . $path2);
+	$path1 = substr($path1,0,strlen($path2));
+	$this->__log(__METHOD__ ." path1 value : " . $path1);
+	// return !strncmp($path, $this->getFullPath(), strlen($this->getFullPath()));
+	if($path1!=$path2)
+		return false;
+	else 
+		return true;
 }
 private function unlinkRecursive($dir,$deleteRootToo=true) {
 	if(!$dh = @opendir($dir)) {
@@ -1013,7 +1027,7 @@ public function run()
 	$response = '';
 	if(!isset($_GET)) {
 		$this->error($this->lang('INVALID_ACTION'));
-	} else {
+	} else {		
 		if(isset($_GET['mode']) && $_GET['mode']!='') {
 			switch($_GET['mode']) {
 				default:
@@ -1021,47 +1035,54 @@ public function run()
 				break;
 				case 'getinfo':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$response = $this->getinfo();
 				}
 				break;
 				case 'getfolder':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$response = $this->getfolder();
 				}
 				break;
 				case 'rename':
-				if($this->getvar('old') && $this->getvar('new')) {
+				if($this->getvar('old') && $this->getvar('new')) {					
 					$response = $this->rename();
 				}
 				break;
 				case 'move':
         // allow "../"
-				if($this->getvar('old') && $this->getvar('new', 'parent_dir') && $this->getvar('root')) {
+				if($this->getvar('old') && $this->getvar('new', 'parent_dir') && $this->getvar('root')) {					
 					$response = $this->move();
 				}
 				break;
 				case 'editfile':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$response = $this->editfile();
 				}
 				break;
 				case 'delete':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$response = $this->delete();
 				}
 				break;
 				case 'addfolder':
 				if($this->getvar('path') && $this->getvar('name')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$response = $this->addfolder();
 				}
 				break;
 				case 'download':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					$this->download();
 				}
 				break;
 				case 'preview':
 				if($this->getvar('path')) {
+					$current_path = $this->getFullPath();if(!$this->isValidPath($current_path)) $this->error("No way.");
 					if(isset($_GET['thumbnail'])) {
 						$thumbnail = true;
 					} else {
@@ -1080,12 +1101,12 @@ public function run()
 				$this->error($this->lang('MODE_ERROR'));
 				break;
 				case 'add':
-				if($this->postvar('currentpath')) {
+				if($this->postvar('currentpath')) {					
 					$this->add();
 				}
 				break;
 				case 'replace':
-				if($this->postvar('newfilepath')) {
+				if($this->postvar('newfilepath')) {					
 					$this->replace();
 				}
 				break;
