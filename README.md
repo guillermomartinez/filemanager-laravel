@@ -35,8 +35,10 @@ Copia el Controller, View a la carpeta resources/views/vendor/filemanager-larave
 
 Al final Agrega en routes.php
 
-	Route::group(array('middleware' => 'auth'), function(){
-		Route::controller('filemanager', 'FilemanagerLaravelController');
+	Route::group(['prefix' => 'filemanager','middleware' => 'auth'], function() {    
+	    Route::get('show', 'FilemanagerLaravelController@getShow');
+	    Route::get('connectors', 'FilemanagerLaravelController@getConnectors');
+	    Route::post('connectors', 'FilemanagerLaravelController@postConnectors');
 	});
 
 
@@ -57,8 +59,10 @@ Ejemplo http://localhost/admin/filemanager/
 
 Modifica tu routes.php
 ```
-Route::group(array('middleware' => 'auth'), function(){
-    Route::controller('admin/filemanager', 'FilemanagerLaravelController');
+Route::group(array('middleware' => 'auth'), function(){    
+    Route::get('admin/filemanager/show', 'FilemanagerLaravelController@getShow');
+    Route::get('admin/filemanager/connectors', 'FilemanagerLaravelController@getConnectors');
+    Route::post('admin/filemanager/connectors', 'FilemanagerLaravelController@postConnectors');
 });
 ```
 Modifica tu controller
