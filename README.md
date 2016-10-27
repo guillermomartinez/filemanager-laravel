@@ -1,6 +1,11 @@
 #Filemanager para Laravel 5
 Basado de https://github.com/simogeo/Filemanager
 
+##Importante
+Este paquete solo se dará soporte por temas de seguridad.
+
+Se recomienda usar este paquete https://github.com/guillermomartinez/filemanager-ui
+
 ##Demo
 <a href="http://laravel-filemanager.rhcloud.com/" target="_blank" >http://laravel-filemanager.rhcloud.com/</a><br>
 <a href="http://laravel-filemanager.rhcloud.com/filemanager/show" target="_blank">http://laravel-filemanager.rhcloud.com/filemanager/show</a>
