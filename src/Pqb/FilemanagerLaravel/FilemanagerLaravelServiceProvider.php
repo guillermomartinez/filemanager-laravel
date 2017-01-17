@@ -19,6 +19,7 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		// $this->package('Pqb/FilemanagerLaravel');
+        require __DIR__.'/routes.php';
 	}
 
 	/**
@@ -37,7 +38,6 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 		  $loader->alias('FilemanagerLaravel', 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel');
 		});
 		$this->publishes([
-            __DIR__ . '/../../controllers' => base_path('app/Http/Controllers'),
             __DIR__ . '/../../views' => base_path('resources/views/vendor/filemanager-laravel'),            
             __DIR__ . '/../../../public' => base_path('public'),            
         ]);

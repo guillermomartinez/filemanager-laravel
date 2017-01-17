@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+<?php namespace Pqb\FilemanagerLaravel\Controllers;
+
+
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 use Pqb\FilemanagerLaravel\FilemanagerLaravel;
