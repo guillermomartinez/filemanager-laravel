@@ -28,9 +28,9 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['FilemanagerLaravel'] = $this->app->share( function($app){
-			return new FilemanagerLaravel;
-		});
+        $this->app->singleton('FilemanagerLaravel', function () {
+            return new FilemanagerLaravel;
+        });
 		$this->app->booting(function()
 		{
 		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
@@ -38,8 +38,8 @@ class FilemanagerLaravelServiceProvider extends ServiceProvider {
 		});
 		$this->publishes([
             __DIR__ . '/../../controllers' => base_path('app/Http/Controllers'),
-            __DIR__ . '/../../views' => base_path('resources/views/vendor/filemanager-laravel'),            
-            __DIR__ . '/../../../public' => base_path('public'),            
+            __DIR__ . '/../../views' => base_path('resources/views/vendor/filemanager-laravel'),
+            __DIR__ . '/../../../public' => base_path('public'),
         ]);
         $this->loadViewsFrom(__DIR__ . 'resources/views', 'filemanager-laravel');
 	}
