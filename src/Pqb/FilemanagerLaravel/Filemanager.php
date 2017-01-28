@@ -23,10 +23,10 @@ class Filemanager
 	public $connector_url='/filemanager/connectors'; // Url where prosecute all operations
 	public $dir_filemanager=''; // filemanager plugin folder relating to domain example: /tinymce/plugins
 	private $dir_separate_real = '/filemanager';
-	public function __construct($extraConfig = '') {	
+	public function __construct($extraConfig = '') {
 		if(!empty($extraConfig) && is_array($extraConfig) && array_key_exists('dir_filemanager', $extraConfig)) {
 			$this->dir_filemanager = $extraConfig['dir_filemanager'];
-		}		
+		}
 		if($this->dir_filemanager!=""){
 			$this->dir_separate_real = $this->dir_filemanager.'/filemanager';
 		}
@@ -143,7 +143,7 @@ class Filemanager
 	public function getinfo() {
 		$this->item = array();
 		$this->item['properties'] = $this->properties;
-		$this->get_file_info('', false);		
+		$this->get_file_info('', false);
 		// handle path when set dynamically with $fm->setFileRoot() method
 		if($this->dynamic_fileroot != '') {
 			$path = $this->dynamic_fileroot. $this->get['path'];
@@ -525,7 +525,7 @@ class Filemanager
 		$imagePath = $current_path . $_FILES['newfile']['name'];
 		if($this->is_image($imagePath) && $this->config['images']['resize']['enabled']) {
 			if ($size = @getimagesize($imagePath)){
-				if ($size[0] > $this->config['images']['resize']['maxWidth'] || $size[1] > $this->config['images']['resize']['maxHeight']) {					
+				if ($size[0] > $this->config['images']['resize']['maxWidth'] || $size[1] > $this->config['images']['resize']['maxHeight']) {
 					$image = Image::make($imagePath);
 					$resized = $image->resize($this->config['images']['resize']['maxWidth'], $this->config['images']['resize']['maxHeight'],function ($constraint) {$constraint->aspectRatio();$constraint->upsize();});
 					$resized->save($imagePath);
@@ -695,7 +695,7 @@ class Filemanager
 		} else {
 			$full_path = $this->doc_root . rawurldecode($path);
 		}
-		$full_path = str_replace("//", "/", $full_path);		
+		$full_path = str_replace("//", "/", $full_path);
 		$this->__log(" returned path : " . $full_path);
 		return $full_path;
 	}
@@ -755,7 +755,7 @@ private function isValidPath($path) {
 	// $this->__log('compare : ' .$this->getFullPath(). '($this->getFullPath())  and ' . $path . '(path)');
 	// $this->__log('strncmp() retruned value : ' .strncmp($path, $this->getFullPath(), strlen($this->getFullPath())));
 	$path1 = realpath($path);
-	$path2 = realpath($this->doc_root.$this->dir_separate_real.'/'.$this->separator);	
+	$path2 = realpath($this->doc_root.$this->dir_separate_real.'/'.$this->separator);
 	$this->__log(__METHOD__ ." path1 value : " . $path1);
 	$this->__log(__METHOD__ ." path2 value : " . $path2);
 	$path1 = substr($path1,0,strlen($path2));
@@ -763,7 +763,7 @@ private function isValidPath($path) {
 	// return !strncmp($path, $this->getFullPath(), strlen($this->getFullPath()));
 	if($path1!=$path2)
 		return false;
-	else 
+	else
 		return true;
 }
 private function unlinkRecursive($dir,$deleteRootToo=true) {
@@ -823,7 +823,7 @@ private function cleanString($string, $allowed = array()) {
 		'Þ'=>'B', 'ß'=>'Ss','à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
 		'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n',
 		'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ő'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'ű'=>'u',
-		'û'=>'u', 'ü'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r', ' '=>'_', "'"=>'_', '/'=>''
+		'û'=>'u', 'ü'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r', ' '=>'_', "'"=>'_', '/'=>'', '%'=>''
 		);
 	if (is_array($string)) {
 		$cleaned = array();
@@ -1027,7 +1027,7 @@ public function run()
 	$response = '';
 	if(!isset($_GET)) {
 		$this->error($this->lang('INVALID_ACTION'));
-	} else {		
+	} else {
 		if(isset($_GET['mode']) && $_GET['mode']!='') {
 			switch($_GET['mode']) {
 				default:
@@ -1046,13 +1046,13 @@ public function run()
 				}
 				break;
 				case 'rename':
-				if($this->getvar('old') && $this->getvar('new')) {					
+				if($this->getvar('old') && $this->getvar('new')) {
 					$response = $this->rename();
 				}
 				break;
 				case 'move':
         // allow "../"
-				if($this->getvar('old') && $this->getvar('new', 'parent_dir') && $this->getvar('root')) {					
+				if($this->getvar('old') && $this->getvar('new', 'parent_dir') && $this->getvar('root')) {
 					$response = $this->move();
 				}
 				break;
@@ -1101,12 +1101,12 @@ public function run()
 				$this->error($this->lang('MODE_ERROR'));
 				break;
 				case 'add':
-				if($this->postvar('currentpath')) {					
+				if($this->postvar('currentpath')) {
 					$this->add();
 				}
 				break;
 				case 'replace':
-				if($this->postvar('newfilepath')) {					
+				if($this->postvar('newfilepath')) {
 					$this->replace();
 				}
 				break;
