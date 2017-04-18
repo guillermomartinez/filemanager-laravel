@@ -1,20 +1,20 @@
-#Filemanager para Laravel 5
+# Filemanager para Laravel 5
 Basado de https://github.com/simogeo/Filemanager
 
-##Importante
+## Importante
 Este paquete solo se dará soporte por temas de seguridad.
 
 Se recomienda usar este paquete https://github.com/guillermomartinez/filemanager-ui
 
-##Demo
+## Demo
 <a href="http://laravel-filemanager.rhcloud.com/" target="_blank" >http://laravel-filemanager.rhcloud.com/</a><br>
 <a href="http://laravel-filemanager.rhcloud.com/filemanager/show" target="_blank">http://laravel-filemanager.rhcloud.com/filemanager/show</a>
 
-##Requiere
+## Requiere
 
 "intervention/image": "2.*"
 
-##Instalación
+## Instalación
 
 Edita tu `composer.json`.
 
@@ -59,7 +59,7 @@ tinymce.init(editor_config);
 </script>
 ```
 
-##Si deseas poner en una sub carpeta
+## Si deseas poner en una sub carpeta
 Ejemplo http://localhost/admin/filemanager/
 
 Modifica tu routes.php
@@ -104,14 +104,14 @@ tinymce.init(editor_config);
 </script>
 ```
 
-#Filemanager para Laravel 4
+# Filemanager para Laravel 4
 Basado de https://github.com/simogeo/Filemanager
 
-##Requiere
+## Requiere
 
 "intervention/image": "2.*"
 
-##Instalación
+## Instalación
 
 Edita tu `composer.json`.
 
@@ -158,5 +158,5 @@ Cambiar la url absoluta en:
 var cmsURL = 'http://localhost/filemanager/show?&field_name='+field_name+'&lang='+tinymce.settings.language;
 ```
 
-##Demo
+## Demo
 http://www.youtube.com/watch?v=yowJRKZ3Ums
